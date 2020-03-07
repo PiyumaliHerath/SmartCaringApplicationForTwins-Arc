@@ -7,7 +7,7 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!-- Import custom css -->
-    <link rel="stylesheet" href="../../../DayCare/public/css/home.css">
+    <link rel="stylesheet" href="../../../DayCare/public/css/login.css">
 </head>
 
 <body>
@@ -17,7 +17,51 @@
 include($_SERVER['DOCUMENT_ROOT'].'/DayCare/app/views/partials/navbar/navbar.php');
 ?>
 
-<!-- Home page body -->
+<!-- Login page body -->
+<div class="bg-reg">
+    <div class="row">
+        <div class="card mb-5 round card-bg">
+            <h3 class="card-title text-center mt-5 title "> <span class="text-white">Welcome to </span>  <span class="text-primary">DayCare</span> </h3>
+            <div class="text-center">
+                <p class="slogan text-white"> " Providing an all-inclusive, safe, and caring environment for children " </p>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="../../../DayCare/public/images/dad.png" class="w-75 float-center mx-5">
+                </div>
+                <div class="col-md-8">
+
+                    <form class="mx-3 mb-3">
+
+                        <div class="form-row">
+                            <!-- Email input field -->
+                            <div class="form-group col-md-12 col-sm-12 my-3">
+                                <label for="inputEmail">Email</label>
+                                <input type="email" name="email" #email="ngModel" [(ngModel)]="model.email"
+                                       class="form-control" id="inputEmail" placeholder="Enter Email" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <!-- Password input field -->
+                            <div class="form-group col-md-12 col-sm-12 my-3">
+                                <label for="inputPassword">Password</label>
+                                <input type="password" name="password" #password="ngModel" [(ngModel)]="model.password"
+                                       class="form-control" id="inputPassword" placeholder="Enter Password" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn my-3 submit-btn mr-3 round">Sign Up</button>
+
+
+
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
 
 
 

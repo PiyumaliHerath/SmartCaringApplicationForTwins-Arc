@@ -1,0 +1,6 @@
+for MVC pattern in php
+https://www.youtube.com/playlist?list=PLfdtiltiRHWGXVHXX09fxXDi-DqInchFD
+
+for the login
+https://newwavenewthinking.wordpress.com/miscellaneous/mvc-simple-mvc-base-login-form-in-php/
+https://www.allphptricks.com/simple-user-registration-login-script-in-php-and-mysqli/
