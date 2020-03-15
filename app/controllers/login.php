@@ -8,24 +8,32 @@ class Login extends Controller
     public function __construct() {
         $this->user = $this->model("Parentsprofile");
     }
+    public function index(){
+        session_start();
+        if(isset($_REQUEST['email']) && isset($_REQUEST['password'])) {
+            $email = stripslashes($_REQUEST['email']);
+            $password = stripslashes($_REQUEST['password']);
 
-   public function invoke(){
+            $finduser = $this->user::where('email', $email)->first();
+            if($finduser != null){
+                if($password == $finduser->password){
+//                    session_register('email');
+                    $_SESSION['login_email'] = $finduser->email;
+                    $_SESSION['user_name'] = $finduser->parentName;
+                    header("location: /daycare-pure/public/admin/studentreg");
 
-       if(isset($_REQUEST['email']) && isset($_REQUEST['password'])){
-           $email = stripslashes($_REQUEST['email']);
-           $password = stripslashes($_REQUEST['password']);
+                }
+            }else{
+                $error = "Your email or password is incorrect";
+                header("location: /daycare-pure/public/home/login?error=".$error);
+            }
 
-           $finduser = $this->user::where('email', $email)->first();
-           if($finduser != null){
-               header("https://www.google.com/");
-           }
-       }
+        }
+    }
 
-//       $result = $this->model-getlogin();
-//
-//       if($result == "login"){
-//           echo "Login Successfully";
-//       }
-
-   }
+    public function logout(){
+            session_start();
+            session_destroy();
+        header("location: /daycare-pure/public/home/homepage");
+    }
 }

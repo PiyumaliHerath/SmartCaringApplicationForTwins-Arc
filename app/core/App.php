@@ -7,6 +7,7 @@ class App{
     protected $params = [];
     
     public function __construct(){
+        session_start();
       $url = $this->parseUrl();
 
       print_r($url);

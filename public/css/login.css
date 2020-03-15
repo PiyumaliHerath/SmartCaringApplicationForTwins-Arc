@@ -53,3 +53,10 @@
 .round{
     border-radius: 20px;
 }
+
+.error-msg{
+    font-size:15px;
+    font-weight: bolder;
+    color:red;
+    margin-top:10px
+}

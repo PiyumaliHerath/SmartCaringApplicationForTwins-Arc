@@ -7,15 +7,17 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!-- Import custom css -->
-    <link rel="stylesheet" href="../../../DayCare/public/css/home.css">
+    <link rel="stylesheet" href="../../../daycare-pure/public/css/home.css">
 </head>
 
 <body>
 
 <!--Import Navbar from partial folder-->
 <?php
-include($_SERVER['DOCUMENT_ROOT'].'/DayCare/app/views/partials/navbar/navbar.php');
+include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navbar.php');
+
 ?>
+
 
     <!-- Home page body -->
     <header>
@@ -31,7 +33,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/DayCare/app/views/partials/navbar/navbar.php
                     <br>
                 </div>
                 <div class="col-md-6">
-                    <img src="../../../DayCare/public/images/3babies.png" class="babies-img" alt="">
+                    <img src="../../../daycare-pure/public/images/3babies.png" class="babies-img" alt="">
                 </div>
             </div>
 
@@ -86,7 +88,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/DayCare/app/views/partials/navbar/navbar.php
 
     <div class="row">
         <div class="col-md-12 col-sm-12">
-            <img src="../../../DayCare/public/images/baby-ground.gif" class="baby-ground">
+            <img src="../../../daycare-pure/public/images/baby-ground.gif" class="baby-ground">
         </div>
     </div>
 
@@ -101,7 +103,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/DayCare/app/views/partials/navbar/navbar.php
 
     <div class="row">
         <div class="col-sm-4 col-md-4">
-            <img src="../../../DayCare/public/images/family.png" class="family-pic">
+            <img src="../../../daycare-pure/public/images/family.png" class="family-pic">
         </div>
         <div class="col-sm-6 col-md-6">
             <div class="row">

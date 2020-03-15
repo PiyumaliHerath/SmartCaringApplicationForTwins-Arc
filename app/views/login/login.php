@@ -1,5 +1,4 @@
-
-<html>
+x<html>
 
 <head>
     <!-- Import Bootstrap -->
@@ -7,14 +6,15 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!-- Import custom css -->
-    <link rel="stylesheet" href="../../../DayCare/public/css/login.css">
+    <link rel="stylesheet" href="../../../daycare-pure/public/css/login.css">
 </head>
 
 <body>
 
 <!--Import Navbar from partial folder-->
 <?php
-include($_SERVER['DOCUMENT_ROOT'].'/DayCare/app/views/partials/navbar/navbar.php');
+include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navbar.php');
+
 ?>
 
 <!-- Login page body -->
@@ -27,11 +27,11 @@ include($_SERVER['DOCUMENT_ROOT'].'/DayCare/app/views/partials/navbar/navbar.php
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <img src="../../../DayCare/public/images/dad.png" class="w-75 float-center mx-5">
+                    <img src="../../../daycare-pure/public/images/dad.png" class="w-75 float-center mx-5">
                 </div>
                 <div class="col-md-8">
 
-                    <form class="mx-3 mb-3">
+                    <form class="mx-3 mb-3" action="/daycare-pure/public/login/index">
 
                         <div class="form-row">
                             <!-- Email input field -->
@@ -52,6 +52,9 @@ include($_SERVER['DOCUMENT_ROOT'].'/DayCare/app/views/partials/navbar/navbar.php
 
                         <button type="submit" class="btn my-3 submit-btn mr-3 round">Sign Up</button>
 
+                            <?php  if($_GET['error'] != null){
+                                echo "<div class='alert alert-danger'>" .$_GET['error']. "</div>";
+                            }; ?>
 
 
                     </form>

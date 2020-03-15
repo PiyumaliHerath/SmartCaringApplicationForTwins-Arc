@@ -9,17 +9,26 @@
                     class="navbar-toggler navbar-toggler-right"><span class="navbar-toggler-icon"></span></button>
                 <div id="navbarSupportedContent" class="collapse navbar-collapse">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active"><a href="/home"
+                        <li class="nav-item "><a href="/daycare-pure/public/home/homepage"
                                 class="nav-link text-uppercase font-weight-bold txt-blue">Home <span
                                     class="sr-only">(current)</span></a></li>
                         <li class="nav-item "><a href="#"
                                 class="nav-link text-uppercase font-weight-bold txt-blue">About</a></li>
                         <li class="nav-item "><a href="#"
                                 class="nav-link text-uppercase font-weight-bold txt-blue">Gallery </a></li>
-                        <li class="nav-item "><a href="/login"
+
+                        <?php
+                            if(empty($_SESSION['login_email'])){
+                                echo ' <li class="nav-item "><a href="/daycare-pure/public/home/login?error="
                                 class="nav-link text-uppercase font-weight-bold txt-blue">LogIn</a></li>
                         <li class="nav-item "><a href="/signup"
-                                class="nav-link text-uppercase font-weight-bold txt-blue">SignUp</a></li>
+                                class="nav-link text-uppercase font-weight-bold txt-blue">SignUp</a></li>';
+                            }else{
+                                echo '<li class="nav-item "><a href="/daycare-pure/public/login/logout" class="nav-link text-uppercase font-weight-bold txt-blue">logout</a></li>
+                                      <li class="nav-item "><a href="/daycare-pure/public/admin/studentreg" class="nav-link text-uppercase font-weight-bold txt-blue"><i class="fas fa-user-tie mx-2 "></i>'.$_SESSION['user_name'].'</a></li>';
+
+                            }
+                        ?>
                     </ul>
                 </div>
             </div>

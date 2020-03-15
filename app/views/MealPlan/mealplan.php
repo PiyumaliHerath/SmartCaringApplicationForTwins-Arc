@@ -6,77 +6,25 @@
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
   <!-- Import custom css -->
-  <link rel="stylesheet" href="mealplan.css">
+  <link rel="stylesheet" href="../../../daycare-pure/public/css/mealplan.css">
 </head>
 
 <body>
 
-  <!-- Navugation bar -->
-  <div class="d-flex flex-row mb-3">
-    <header class="header">
-      <nav class="navbar navbar-expand-lg fixed-top py-3 bg-white txt-blue border">
-        <div class="container">
-          <a href="#" class="navbar-brand text-uppercase font-weight-bold">DayCare </a>
-          <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
-            class="navbar-toggler navbar-toggler-right"><span class="navbar-toggler-icon"></span></button>
-          <div id="navbarSupportedContent" class="collapse navbar-collapse">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item"><a href="/home" class="nav-link text-uppercase font-weight-bold txt-blue">Home
-                  <span class="sr-only">(current)</span></a></li>
-              <li class="nav-item "><a href="#" class="nav-link text-uppercase font-weight-bold txt-blue">About</a></li>
-              <li class="nav-item "><a href="#" class="nav-link text-uppercase font-weight-bold txt-blue">Gallery </a>
-              </li>
-              <li class="nav-item "><a href="/login" class="nav-link text-uppercase font-weight-bold txt-blue"><i class="fas fa-user-tie mx-2 "></i>   Nimal Perera</a>
-              <!-- </li>
-              <li class="nav-item "><a href="/signup"
-                  class="nav-link text-uppercase font-weight-bold txt-blue">SignUp</a></li> -->
-            </ul>
-          </div>
-        </div>
-      </nav>
+<?php
+include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navbar.php');
 
-    </header>
+?>
   </div>
 
 
   
   <div id="wrapper">
 
-    <!-- Sidebar -->
-    <div id="sidebar-wrapper" class="mt-5 border">
-        <ul class="sidebar-nav">
-        
-            <li class="sidebar-brand mx-auto mt-3">
-                <a href="#">
-                  <i class="fas fa-user-tie mx-2 "></i>   Nimal Perera
-                </a>
-            </li>
-            <hr>
-            <li>
-                <a href="#" >Student Registration</a>
-            </li>
-            <li>
-                <a href="#" class="active border">Meal Plan</a>
-            </li>
-            <li>
-                <a href="#" >Parent Registration</a>
-            </li>
-            <li>
-                <a href="#" >Teacher Registration</a>
-            </li>
-            <li>
-                <a href="#">About</a>
-            </li>
-            <li>
-                <a href="#">Services</a>
-            </li>
-            <li>
-                <a href="#">Contact</a>
-            </li>
-        </ul>
-    </div>
-    <!-- /#sidebar-wrapper -->
+      <?php
+      include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/sidebar/sidebar.php');
+
+      ?>
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
