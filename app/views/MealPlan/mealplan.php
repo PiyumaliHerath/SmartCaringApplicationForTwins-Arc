@@ -28,12 +28,19 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
+        <?php  if($_GET['error'] != null){
+            echo "<div class='alert alert-danger mt-5'>" .$_GET['error']. "</div>";
+        }; ?>
+        <?php  if($_GET['success'] != null){
+            echo "<div class='alert alert-primary mt-5'>" .$_GET['success']. "</div>";
+        }; ?>
+
         <div class="container mt-5 ">
-          <form>
+          <form action="newmealplan">
             <p class="pt-5">Meal Plan</p>
             <hr>
 
-            <table class="table table-lg">
+            <table class="table table-md">
               <thead>
                 <tr class="table-primary">
                   <th scope="col">Monday</th>
@@ -49,29 +56,69 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
                 </tr>
                 <tr>
                   <th>
-                    <select class="form-control">
-                      <option>Meal 1</option>
+                    <select class="form-control" name="mbreakfast">
+                        <?php
+                        foreach($data as $food){
+                            if($food->foodtype == 'breakfast'){
+                                echo "<option value=$food->id>$food->foodname </option>";
+                            }
+
+                            // echo $parent->parentName;
+                        }
+                        ?>
                     </select>
                   </th>
                   <th>
-                    <select class="form-control">
-                      <option>Meal 1</option>
-                    </select>
+                      <select class="form-control" name="tubreakfast">
+                          <?php
+                          foreach($data as $food){
+                              if($food->foodtype == 'breakfast'){
+                                  echo "<option value=$food->id>$food->foodname </option>";
+                              }
+
+                              // echo $parent->parentName;
+                          }
+                          ?>
+                      </select>
                   </th>
                   <th>
-                    <select class="form-control">
-                      <option>Meal 1</option>
-                    </select>
+                      <select class="form-control" name="wbreakfast">
+                          <?php
+                          foreach($data as $food){
+                              if($food->foodtype == 'breakfast'){
+                                  echo "<option value=$food->id>$food->foodname </option>";
+                              }
+
+                              // echo $parent->parentName;
+                          }
+                          ?>
+                      </select>
                   </th>
                   <th>
-                    <select class="form-control">
-                      <option>Meal 1</option>
-                    </select>
+                      <select class="form-control" name="thbreakfast">
+                          <?php
+                          foreach($data as $food){
+                              if($food->foodtype == 'breakfast'){
+                                  echo "<option value=$food->id>$food->foodname </option>";
+                              }
+
+                              // echo $parent->parentName;
+                          }
+                          ?>
+                      </select>
                   </th>
                   <th>
-                    <select class="form-control">
-                      <option>Meal 1</option>
-                    </select>
+                      <select class="form-control" name="fbreakfast">
+                          <?php
+                          foreach($data as $food){
+                              if($food->foodtype == 'breakfast'){
+                                  echo "<option value=$food->id>$food->foodname </option>";
+                              }
+
+                              // echo $parent->parentName;
+                          }
+                          ?>
+                      </select>
                   </th>
                 </tr>
 
@@ -80,29 +127,69 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
                 </tr>
                 <tr>
                   <th>
-                    <select class="form-control">
-                      <option>Snack 1</option>
-                    </select>
+                      <select class="form-control" name="mmsnack">
+                          <?php
+                          foreach($data as $food){
+                              if($food->foodtype == 'msnack'){
+                                  echo "<option value=$food->id>$food->foodname </option>";
+                              }
+
+                              // echo $parent->parentName;
+                          }
+                          ?>
+                      </select>
                   </th>
                   <th>
-                    <select class="form-control">
-                      <option>Snack 1</option>
-                    </select>
+                      <select class="form-control" name="tumsnack">
+                          <?php
+                          foreach($data as $food){
+                              if($food->foodtype == 'msnack'){
+                                  echo "<option value=$food->id>$food->foodname </option>";
+                              }
+
+                              // echo $parent->parentName;
+                          }
+                          ?>
+                      </select>
                   </th>
                   <th>
-                    <select class="form-control">
-                      <option>Snack 1</option>
-                    </select>
+                      <select class="form-control" name="wmsnack">
+                          <?php
+                          foreach($data as $food){
+                              if($food->foodtype == 'msnack'){
+                                  echo "<option value=$food->id>$food->foodname </option>";
+                              }
+
+                              // echo $parent->parentName;
+                          }
+                          ?>
+                      </select>
                   </th>
                   <th>
-                    <select class="form-control">
-                      <option>Snack 1</option>
-                    </select>
+                      <select class="form-control" name="thmsnack">
+                          <?php
+                          foreach($data as $food){
+                              if($food->foodtype == 'msnack'){
+                                  echo "<option value=$food->id>$food->foodname </option>";
+                              }
+
+                              // echo $parent->parentName;
+                          }
+                          ?>
+                      </select>
                   </th>
                   <th>
-                    <select class="form-control">
-                      <option>Snack 1</option>
-                    </select>
+                      <select class="form-control" name="fmsnack">
+                          <?php
+                          foreach($data as $food){
+                              if($food->foodtype == 'msnack'){
+                                  echo "<option value=$food->id>$food->foodname </option>";
+                              }
+
+                              // echo $parent->parentName;
+                          }
+                          ?>
+                      </select>
                   </th>
                 </tr>
 
@@ -112,29 +199,69 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
                 </tr>
                 <tr>
                   <th>
-                    <select class="form-control">
-                      <option>Meal 1</option>
-                    </select>
+                      <select class="form-control" name="mlunch">
+                          <?php
+                          foreach($data as $food){
+                              if($food->foodtype == 'lunch'){
+                                  echo "<option value=$food->id>$food->foodname </option>";
+                              }
+
+                              // echo $parent->parentName;
+                          }
+                          ?>
+                      </select>
                   </th>
                   <th>
-                    <select class="form-control">
-                      <option>Meal 1</option>
-                    </select>
+                      <select class="form-control" name="tulunch">
+                          <?php
+                          foreach($data as $food){
+                              if($food->foodtype == 'lunch'){
+                                  echo "<option value=$food->id>$food->foodname </option>";
+                              }
+
+                              // echo $parent->parentName;
+                          }
+                          ?>
+                      </select>
                   </th>
                   <th>
-                    <select class="form-control">
-                      <option>Meal 1</option>
-                    </select>
+                      <select class="form-control" name="wlunch">
+                          <?php
+                          foreach($data as $food){
+                              if($food->foodtype == 'lunch'){
+                                  echo "<option value=$food->id>$food->foodname </option>";
+                              }
+
+                              // echo $parent->parentName;
+                          }
+                          ?>
+                      </select>
                   </th>
                   <th>
-                    <select class="form-control">
-                      <option>Meal 1</option>
-                    </select>
+                      <select class="form-control" name="thlunch">
+                          <?php
+                          foreach($data as $food){
+                              if($food->foodtype == 'lunch'){
+                                  echo "<option value=$food->id>$food->foodname </option>";
+                              }
+
+                              // echo $parent->parentName;
+                          }
+                          ?>
+                      </select>
                   </th>
                   <th>
-                    <select class="form-control">
-                      <option>Meal 1</option>
-                    </select>
+                      <select class="form-control" name="flunch">
+                          <?php
+                          foreach($data as $food){
+                              if($food->foodtype == 'lunch'){
+                                  echo "<option value=$food->id>$food->foodname </option>";
+                              }
+
+                              // echo $parent->parentName;
+                          }
+                          ?>
+                      </select>
                   </th>
                 </tr>
 
@@ -143,29 +270,59 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
                 </tr>
                 <tr>
                   <th>
-                    <select class="form-control">
-                      <option>Snack 1</option>
-                    </select>
+                      <select class="form-control" name="mlsnack">
+                          <?php
+                          foreach($data as $food){
+                              if($food->foodtype == 'lsnack'){
+                                  echo "<option value=$food->id>$food->foodname </option>";
+                              }
+                          }
+                          ?>
+                      </select>
                   </th>
                   <th>
-                    <select class="form-control">
-                      <option>Snack 1</option>
-                    </select>
+                      <select class="form-control" name="tulsnack">
+                          <?php
+                          foreach($data as $food){
+                              if($food->foodtype == 'lsnack'){
+                                  echo "<option value=$food->id>$food->foodname </option>";
+                              }
+                          }
+                          ?>
+                      </select>
                   </th>
                   <th>
-                    <select class="form-control">
-                      <option>Snack 1</option>
-                    </select>
+                      <select class="form-control" name="wlsnack">
+                          <?php
+                          foreach($data as $food){
+                              if($food->foodtype == 'lsnack'){
+                                  echo "<option value=$food->id>$food->foodname </option>";
+                              }
+                          }
+                          ?>
+                      </select>
                   </th>
                   <th>
-                    <select class="form-control">
-                      <option>Snack 1</option>
-                    </select>
+                      <select class="form-control" name="thlsnack">
+                          <?php
+                          foreach($data as $food){
+                              if($food->foodtype == 'lsnack'){
+                                  echo "<option value=$food->id>$food->foodname </option>";
+                              }
+                          }
+                          ?>
+                      </select>
                   </th>
                   <th>
-                    <select class="form-control">
-                      <option>Snack 1</option>
-                    </select>
+                      <select class="form-control" name="flsnack">
+                          <?php
+                          foreach($data as $food){
+                              if($food->foodtype == 'lsnack'){
+                                  echo "<option value=$food->id>$food->foodname </option>";
+                              }
+                          }
+                          ?>
+                      </select>
                   </th>
                 </tr>
 
@@ -176,13 +333,16 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
 
             
             <div class="row">
-              <button type="button" class="btn btn-primary btn-lg mt-5 mx-3">Submit</button>
+              <button type="submit" class="btn btn-primary btn-lg mt-5 mx-3">Submit</button>
             </div>
+
+          </form>
             
           </div>
 
         </div>
     </div>
+
   
     <!-- /#page-content-wrapper -->
 

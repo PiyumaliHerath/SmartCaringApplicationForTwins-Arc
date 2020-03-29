@@ -29,9 +29,15 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
+        <?php  if($_GET['error'] != null){
+            echo "<div class='alert alert-danger mt-5'>" .$_GET['error']. "</div>";
+        }; ?>
+        <?php  if($_GET['success'] != null){
+            echo "<div class='alert alert-primary mt-5'>" .$_GET['success']. "</div>";
+        }; ?>
 
         <div class="container mt-5 ">
-            <form>
+            <form action="newstudent">
                 <p class="pt-1">Basic information</p>
                 <hr>
 
@@ -81,13 +87,13 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
                     <div class="col-md-4">
                         <div class="form-group">
 <!--                            <label for="hofcare">Hours of Childcare </label>-->
-                            <input type="text" class="form-control" id="hofcare" name="hofcare"placeholder="Enter Hours of Chilldcare">
+                            <input type="text" class="form-control" id="hoursofchildcare" name="hoursofchildcare"placeholder="Enter Hours of Chilldcare">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
 <!--                            <label for="daysofweek">Days of Week </label>-->
-                            <input type="text" class="form-control" id="daysofweek" name="daysofweek" placeholder="Enter Cronic Health Concern">
+                            <input type="text" class="form-control" id="daysofweek" name="daysofweek" placeholder="Enter Days of Weeks">
                         </div>
                     </div>
                 </div>
@@ -138,13 +144,13 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
                     <div class="col-md-6">
                         <div class="form-group">
 <!--                            <label for="height">Height </label>-->
-                            <input type="text" class="form-control" id="height" placeholder="Enter Height">
+                            <input type="text" class="form-control" id="height" name="height" placeholder="Enter Height">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
 <!--                            <label for="weight"> Weight</label>-->
-                            <input type="text" class="form-control" id="weight" placeholder="Enter Weight">
+                            <input type="text" class="form-control" id="weight" name="weight" placeholder="Enter Weight">
                         </div>
                     </div>
                 </div>
@@ -153,7 +159,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
                         <div class="col-md-6">
                             <div class="form-group">
 <!--                                <label for="alergies">Medication Allergies</label>-->
-                                <select class="form-control form-control" id="alergies" >
+                                <select class="form-control form-control" name="medicationallergies" id="alergies" >
                                     <option value="" disabled selected>Medication Allergies</option>
                                     <option>Yes</option>
                                     <option>No</option>
@@ -163,11 +169,16 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
                         <div class="col-md-6">
                             <div class="form-group">
 <!--                               <label for="foodalergies">Food Allergies </label>-->
-                                <select class="form-control form-control" id="foodalergies" >
-                                    <option value="" disabled selected>Food <Allergies></Allergies></option>
-                                    <option>Yes</option>
-                                    <option>No</option>
+                                <select class="form-control form-control selectpicker" name="foodallergies[]" id="foodalergies" multiple>
+                                    <option value="no" disabled selected>Food Allergies</option>
+                                    <?php
+                                    foreach($mdata as $food){
+                                        echo "<option value=$food->id>$food->foodname </option>";
+                                        // echo $parent->parentName;
+                                    }
+                                    ?>
                                 </select>
+
                             </div>
                         </div>
                     </div>
@@ -176,13 +187,13 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
                     <div class="col-md-6">
                         <div class="form-group">
 <!--                            <label for="foodprefference">Food Prefference</label>-->
-                            <input type="text" class="form-control" id="foodprefference" placeholder="Enter Food Prefference">
+                            <input type="text" class="form-control" id="foodprefference" name="foodprefference" placeholder="Enter Food Prefference">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
 <!--                            <label for="cronichealthconser">Cronic Health Concern </label>-->
-                            <input type="text" class="form-control" id="cronichealthconser" placeholder="Enter Cronic Health Concern">
+                            <input type="text" class="form-control" id="cronichealthconser" name="cronichealthconsern" placeholder="Enter Cronic Health Concern">
                         </div>
                     </div>
                 </div>
@@ -190,7 +201,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
                 <div class="row ">
                     <div class="form-group col-md-12">
                         <!--                    <label for="narrations">Other Narrations</label>-->
-                        <textarea class="form-control" id="narrations" rows="3" placeholder="Other Narration"></textarea>
+                        <textarea class="form-control" id="narrations" name="narrations" rows="3" placeholder="Other Narration"></textarea>
                     </div>
 
                 </div>
@@ -198,7 +209,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
                 <div class="row ">
                     <div class="form-group col-md-12">
                         <!--                    <label for="specialnotes">Special Notes</label>-->
-                        <textarea class="form-control" id="specialnotes" rows="3" placeholder="Special notes"></textarea>
+                        <textarea class="form-control" id="specialnotes" name="specialnotes" rows="3" placeholder="Special notes"></textarea>
                     </div>
 
                 </div>
@@ -243,7 +254,8 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
         crossorigin="anonymous"></script>
 
 <!-- import custom java script -->
-<script src="home.js" type="text/javascript"></script>
+
+
 
 <!--DateTime Picker-->
 

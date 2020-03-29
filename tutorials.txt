@@ -4,3 +4,7 @@ https://www.youtube.com/playlist?list=PLfdtiltiRHWGXVHXX09fxXDi-DqInchFD
 for the login
 https://newwavenewthinking.wordpress.com/miscellaneous/mvc-simple-mvc-base-login-form-in-php/
 https://www.allphptricks.com/simple-user-registration-login-script-in-php-and-mysqli/
+
+For the search part
+https://www.cloudways.com/blog/live-search-laravel-ajax/
+https://www.youtube.com/watch?v=wCsPAquMNVw

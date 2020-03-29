@@ -8,10 +8,16 @@
         </li>
         <hr>
         <li>
-            <a href="studentreg" >Student Registration</a>
+            <a href="studentreg?error=&success=" >Student Registration</a>
         </li>
         <li>
-            <a href="mealplan">Meal Plan</a>
+            <a href="mealplan?error=&success=">Meal Plan</a>
+        </li>
+        <li>
+            <a href="currentmealplan?error=&success=">Current Meal Plan</a>
+        </li>
+        <li>
+            <a href="foods?error=&success=">Foods</a>
         </li>
         <li>
             <a href="parentreg?error=&success=">Parent Registration</a>

@@ -10,7 +10,7 @@ class App{
         session_start();
       $url = $this->parseUrl();
 
-      print_r($url);
+//      print_r($url);
 
       if(file_exists('../app/controllers/'. $url[0] . '.php')){
         $this->controller = $url[0];
