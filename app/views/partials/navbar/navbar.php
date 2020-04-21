@@ -14,8 +14,7 @@
                                     class="sr-only">(current)</span></a></li>
                         <li class="nav-item "><a href="#"
                                 class="nav-link text-uppercase font-weight-bold txt-blue">About</a></li>
-                        <li class="nav-item "><a href="#"
-                                class="nav-link text-uppercase font-weight-bold txt-blue">Gallery </a></li>
+
 
                         <?php
                             if(empty($_SESSION['login_email'])){
@@ -24,7 +23,8 @@
                         <li class="nav-item "><a href="/signup"
                                 class="nav-link text-uppercase font-weight-bold txt-blue">SignUp</a></li>';
                             }else{
-                                echo '<li class="nav-item "><a href="/daycare-pure/public/login/logout" class="nav-link text-uppercase font-weight-bold txt-blue">logout</a></li>
+                                echo ' <li class="nav-item "><a href="/daycare-pure/public/home/gallery" class="nav-link text-uppercase font-weight-bold txt-blue">Gallery </a></li>
+                                      <li class="nav-item "><a href="/daycare-pure/public/login/logout" class="nav-link text-uppercase font-weight-bold txt-blue">logout</a></li>
                                       <li class="nav-item "><a href="/daycare-pure/public/admin/studentreg" class="nav-link text-uppercase font-weight-bold txt-blue"><i class="fas fa-user-tie mx-2 "></i>'.$_SESSION['user_name'].'</a></li>';
 
                             }

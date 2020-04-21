@@ -6,7 +6,7 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!-- Import custom css -->
-    <link rel="stylesheet" href="../../../daycare-pure/public/css/teacherreg.css">
+    <link rel="stylesheet" href="../../../daycare-pure/public/css/studentreg.css">
 </head>
 
 <body>
@@ -32,10 +32,27 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
         <div class="container mt-5 ">
 
         <div class="row">
-            <div class="col-md-12 col-sm-12">
-                <h1 class="text-center"> <?php echo $data->firstname. " ". $data->lastname ?></h1>
+            <div class="col-md-5 col-sm-12">
+                <img src='../../../daycare-pure/public/uploadimages/babies/<?php echo $data->photo?>' class='img-fluid fit-image'>
             </div>
+            <div class="col-md-7 col-sm-12">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <h1 class="text-bold"> <?php echo $data->firstname. " ". $data->lastname ?></h1>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <h6> <i class="fas fa-birthday-cake mr-3"></i> <?php echo $data->birthday ?></h6>
+                </div>
+                <div class="row mt-2">
+                    <h6> <i class="fas fa-male mr-3"></i> <?php echo $data->gender ?></h6>
+                </div>
+
+            </div>
+
         </div>
+
+
 
 
         </div>

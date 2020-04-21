@@ -3,9 +3,11 @@
 class Home extends Controller{
 
     protected $user;
+    protected $gallery;
 
     public function __construct() {
         $this->user = $this->model("Parentsprofile");
+        $this->gallery = $this->model("Gallery");
     }
 
     public function homepage(){
@@ -13,6 +15,7 @@ class Home extends Controller{
     }
 
     public function login(){
+        $this->sessionforlogin();
         $this->view('login/login');
     }
 
@@ -33,9 +36,22 @@ class Home extends Controller{
         echo "das". $_GET['username'] ."da";
     }
 
+    public function gallery(){
+        $this->session();
+        $galleryphotos = $this->gallery::orderBy('id', 'desc')->get();
+        $this->view("gallery/gallery", $galleryphotos);
+    }
+
     public function session(){
-        if(!empty($_SESSION['login_email'])){
+        if(empty($_SESSION['login_email'])){
             header("location: /daycare-pure/public/home/login?error=");
+            exit();
+        }
+    }
+
+    public function sessionforlogin(){
+        if(isset($_SESSION['login_email'])){
+            header("location: /daycare-pure/public/home/homepage");
             exit();
         }
     }

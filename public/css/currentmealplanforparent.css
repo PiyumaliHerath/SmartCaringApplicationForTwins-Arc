@@ -1,0 +1,11 @@
+.bg-reg{
+    background-image: linear-gradient(to right, #2193b0, #6dd5ed);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+}
+
+.box{
+    margin: 10px;
+    border-radius: 10px;
+}

@@ -8,6 +8,9 @@
         </li>
         <hr>
         <li>
+            <a href="searchstudent" >Students Profile</a>
+        </li>
+        <li>
             <a href="studentreg?error=&success=" >Student Registration</a>
         </li>
         <li>
@@ -26,13 +29,12 @@
             <a href="teacherreg?error=&success="">Teacher Registration</a>
         </li>
         <li>
-            <a href="#">About</a>
+            <a href="uploadimage ?error=&success=">Upload Images</a>
         </li>
         <li>
-            <a href="#">Services</a>
+            <a href="notificationpage?error=&success=">Notification</a>
         </li>
-        <li>
-            <a href="#">Contact</a>
-        </li>
+
+
     </ul>
 </div>

@@ -8,6 +8,7 @@ class App{
     
     public function __construct(){
         session_start();
+//        $_SESSION['login_email'] = "";
       $url = $this->parseUrl();
 
 //      print_r($url);

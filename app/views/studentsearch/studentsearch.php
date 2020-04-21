@@ -28,12 +28,7 @@ $students = [];
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
-        <?php  if($_GET['error'] != null){
-            echo "<div class='alert alert-danger mt-5'>" .$_GET['error']. "</div>";
-        }; ?>
-        <?php  if($_GET['success'] != null){
-            echo "<div class='alert alert-primary mt-5'>" .$_GET['success']. "</div>";
-        }; ?>
+
     </div>
 
     <div class="row mx-5 mt-5">

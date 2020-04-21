@@ -6,12 +6,16 @@ class Admin extends Controller{
     Protected $food;
     Protected $student;
     Protected $mealplan;
+    Protected $gallery;
+    Protected $notification;
 
     public function __construct() {
         $this->user = $this->model("Parentsprofile");
         $this->food = $this->model("Food");
         $this->student = $this->model("Student");
         $this->mealplan = $this->model("Mealplan");
+        $this->gallery = $this->model("Gallery");
+        $this->notification = $this->model("Notification");
     }
 
     public function parentreg(){
@@ -37,16 +41,72 @@ class Admin extends Controller{
         $this->view('MealPlan/mealplan', $foods);
     }
 
+    public function uploadimage(){
+        $this->session();
+        $this->view("uploadimage/uploadimage");
+    }
+
     public function foods(){
         $this->session();
         $foods = $this->food::get();
         $this->view('foods/foods', $foods);
     }
 
+    public function notificationpage(){
+        $this->session();
+        $this->view('notificationpage/notificationpage');
+    }
+
+    public function notification(){
+        $message =  $_GET['message'];
+        $type =  $_GET['type'];
+
+        $result = $this->sentnotification($message, $type);
+
+        if($result){
+            $success = "Notification Added Successfully !!";
+            header("location: /daycare-pure/public/admin/notificationpage?error=&success=".$success);
+        }
+    }
+
+    public function sentnotification($message, $type){
+        $this->notification->create([
+            'message' => $message,
+            'type' => $type,
+            'status' => 0
+        ]);
+        return true;
+    }
+
     public function searchstudent(){
         $this->session();
         $student = $this->student::get();
         $this->view('studentsearch/studentsearch',$student);
+    }
+
+    public function submitimagetogallery(){
+        $this->session();
+        if (isset($_POST['submitbtn'])) {
+                $uploadimage = $_FILES["uploadimage"];
+                $name = date("h-i-sa"). $uploadimage["name"];
+
+                if(move_uploaded_file($uploadimage["tmp_name"], "../../daycare-pure/public/uploadimages/gallery/".$name )){
+                   $this->gallery->create([
+                       "imagename" => $name,
+                       "uploadedby" =>  $_SESSION['login_email']
+                   ]);
+                   $success = "Successfull added !!";
+                    header("location: /daycare-pure/public/admin/uploadimage?error=&success=".$success);
+                }else{
+                    echo "Error";
+                };
+
+
+        }else{
+            echo "Somthing wrong";
+        }
+
+
     }
 
     public function getstudentslist(){
@@ -215,30 +275,40 @@ class Admin extends Controller{
 
         $selectedfoodarray = [];
 
-        foreach ($_GET['foodallergies'] as $foodallergy){
+        foreach ($_POST['foodallergies'] as $foodallergy){
             array_push($selectedfoodarray, $foodallergy);
         }
 
 
+            $uploadimage = $_FILES["photo"];
+            $name = date("h-i-sa"). $uploadimage["name"];
+
+            if(move_uploaded_file($uploadimage["tmp_name"], "../../daycare-pure/public/uploadimages/babies/".$name )){
+                $uploadname = $name;
+            }
+
+
+
         $this->student->create([
-            'firstname' => $_GET['firstname'],
-            'lastname' => $_GET['lastname'],
-            'gender' => $_GET['gender'],
-            'address' => $_GET['address'],
-            'birthday' => $_GET['birthday'],
-            'hoursofchildcare' => $_GET['hoursofchildcare'],
-            'daysofweek' => $_GET['daysofweek'],
-            'parent' => $_GET['parent'],
-            'ename' => $_GET['ename'],
-            'ephoneno' => $_GET['ephoneno'],
-            'height' => $_GET['height'],
-            'weight' => $_GET['weight'],
-            'medicationallergies' => $_GET['medicationallergies'],
+            'firstname' => $_POST['firstname'],
+            'lastname' => $_POST['lastname'],
+            'gender' => $_POST['gender'],
+            'address' => $_POST['address'],
+            'birthday' => $_POST['birthday'],
+            'hoursofchildcare' => $_POST['hoursofchildcare'],
+            'daysofweek' => $_POST['daysofweek'],
+            'parent' => $_POST['parent'],
+            'photo'=> $uploadname,
+            'ename' => $_POST['ename'],
+            'ephoneno' => $_POST['ephoneno'],
+            'height' => $_POST['height'],
+            'weight' => $_POST['weight'],
+            'medicationallergies' => $_POST['medicationallergies'],
             'foodallergies' => implode('|',$selectedfoodarray),
-            'foodprefferenec' => $_GET['foodprefference'],
-            'cronichealthconsern' => $_GET['cronichealthconsern'],
-            'narrations' => $_GET['narrations'],
-            'specialnotes' => $_GET['specialnotes'],
+            'foodprefferenec' => $_POST['foodprefference'],
+            'cronichealthconsern' => $_POST['cronichealthconsern'],
+            'narrations' => $_POST['narrations'],
+            'specialnotes' => $_POST['specialnotes'],
         ]);
 
         $success = "Student Added Successfully !!";

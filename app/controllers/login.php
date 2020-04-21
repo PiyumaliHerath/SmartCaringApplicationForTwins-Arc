@@ -9,7 +9,7 @@ class Login extends Controller
         $this->user = $this->model("Parentsprofile");
     }
     public function index(){
-        session_start();
+//        session_start();
         if(isset($_REQUEST['email']) && isset($_REQUEST['password'])) {
             $email = stripslashes($_REQUEST['email']);
             $password = stripslashes($_REQUEST['password']);
@@ -18,9 +18,16 @@ class Login extends Controller
             if($finduser != null){
                 if($password == $finduser->password){
 //                    session_register('email');
+                    $_SESSION['id'] = $finduser->id;
+                    $_SESSION['type'] = $finduser->type;
                     $_SESSION['login_email'] = $finduser->email;
                     $_SESSION['user_name'] = $finduser->parentName;
-                    header("location: /daycare-pure/public/admin/studentreg");
+                    if($finduser->type == "parent"){
+                        header("location: /daycare-pure/public/parents/selectchildpage");
+                    }else if($finduser->type == "teacher"){
+                        header("location: /daycare-pure/public/admin/searchstudent ");
+                    }
+
 
                 }
             }else{

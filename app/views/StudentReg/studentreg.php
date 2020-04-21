@@ -37,7 +37,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
         }; ?>
 
         <div class="container mt-5 ">
-            <form action="newstudent">
+            <form action="newstudent" enctype="multipart/form-data" method="post">
                 <p class="pt-1">Basic information</p>
                 <hr>
 
@@ -114,6 +114,12 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
 <!--                            <option>Nimal</option>-->
 <!--                            <option>Kamal</option>-->
 <!--                        </select>-->
+                    </div>
+                    <div class="row mt-3 mx-2">
+                        <div class="col-md-12">
+                            <label for="photo">Photo</label>
+                            <input type="file" id="photo" name="photo" class="form-control-file">
+                        </div>
                     </div>
 
                 </div>
