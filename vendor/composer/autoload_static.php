@@ -18,6 +18,10 @@ class ComposerStaticInitccd9c5f7a02e1762866f26d92c30a775
             'voku\\tests\\' => 11,
             'voku\\' => 5,
         ),
+        'T' => 
+        array (
+            'Twilio\\' => 7,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Php73\\' => 23,
@@ -57,6 +61,10 @@ class ComposerStaticInitccd9c5f7a02e1762866f26d92c30a775
         'voku\\' => 
         array (
             0 => __DIR__ . '/..' . '/voku/portable-ascii/src/voku',
+        ),
+        'Twilio\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/twilio/sdk/src/Twilio',
         ),
         'Symfony\\Polyfill\\Php73\\' => 
         array (
@@ -117,8 +125,13 @@ class ComposerStaticInitccd9c5f7a02e1762866f26d92c30a775
     );
 
     public static $classMap = array (
+        'Food' => __DIR__ . '/../..' . '/app/models/Food.php',
+        'Gallery' => __DIR__ . '/../..' . '/app/models/Gallery.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
+        'Mealplan' => __DIR__ . '/../..' . '/app/models/Mealplan.php',
+        'Notification' => __DIR__ . '/../..' . '/app/models/notification.php',
         'Parentsprofile' => __DIR__ . '/../..' . '/app/models/Parentsprofile.php',
+        'Student' => __DIR__ . '/../..' . '/app/models/Student.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

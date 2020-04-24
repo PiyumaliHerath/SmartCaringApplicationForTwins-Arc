@@ -57,24 +57,23 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
                 <div class="card-body">
                     <h5 class="card-title"> Tommorow Meal Plan</h5>
                     <?php
-                    if($data[0] != "w"){
-
+                    if($data[0] != "s"){
                         if($data[2] == 1){
-                            echo "<p class='foodlist'> Breakfast <span class='foodallergy'> $data[1]</span> </p>";
+                            echo "<text class='foodlist'> Breakfast <span class='foodallergy'> $data[1]</span> </text> <br>";
                         }else{
-                            echo "<p class='foodlist'> Breakfast <span class='food'> $data[1]</span> </p>";
+                            echo "<text class='foodlist'> Breakfast <span class='food'> $data[1]</span> </text><br>";
                         }
 
                     if($data[4] == 1){
-                        echo "<p class='foodlist'> Morning Snack <span class='foodallergy'>  $data[3] </span> </p>";
+                        echo "<text class='foodlist'> Morning Snack <span class='foodallergy'>  $data[3] </span> </text><br>";
                     }else{
-                        echo "<p class='foodlist'> Morning Snack <span class='food'>  $data[3] </span> </p>";
+                        echo "<text class='foodlist'> Morning Snack <span class='food'>  $data[3] </span> </text><br>";
                     }
 
                         if($data[6] == 1){
-                            echo "<p class='foodlist'> Lunch <span class='foodallergy'>  $data[5] </span> </p>";
+                            echo "<text class='foodlist'> Lunch <span class='foodallergy'>  $data[5] </span> </text><br>";
                         }else{
-                            echo "<p class='foodlist'> Lunch <span class='food'>  $data[5] </span> </p>";
+                            echo "<text class='foodlist'> Lunch <span class='food'>  $data[5] </span> </text><br>";
                         }
 
                         if($data[8] == 1){
@@ -86,6 +85,8 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
 
 
 
+                    }else{
+                        echo "<p>Tommorow is weekday</p>";
                     }
                     ?>
 
@@ -93,6 +94,28 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
                 <div class="card-header">
                     <a href="currentmealplan">See full Meal Plan</a>
                 </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+
+        </div>
+        <div class="col-md-3">
+            <div class="card box">
+                <div class="card-header">
+                    <h3 class="title text-center"> <i class="fas fa-bell"></i> Notifications</h3>
+                </div>
+                    <div class="card-body">
+                        <?php
+                            foreach($mdata as $notification){
+                             echo "<div class='alert alert-".$notification->type."'>".$notification->message ." </div>";
+                            }
+                        ?>
+                    </div>
+                <div class="card-header">
+                    <a href="allnotifications">See All Notifications</a>
+                </div>
+
             </div>
         </div>
     </div>

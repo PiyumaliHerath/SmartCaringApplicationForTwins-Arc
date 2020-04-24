@@ -6,6 +6,11 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Food' => $baseDir . '/app/models/Food.php',
+    'Gallery' => $baseDir . '/app/models/Gallery.php',
     'JsonException' => $vendorDir . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
+    'Mealplan' => $baseDir . '/app/models/Mealplan.php',
+    'Notification' => $baseDir . '/app/models/notification.php',
     'Parentsprofile' => $baseDir . '/app/models/Parentsprofile.php',
+    'Student' => $baseDir . '/app/models/Student.php',
 );

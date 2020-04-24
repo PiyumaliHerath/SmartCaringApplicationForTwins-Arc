@@ -1,6 +1,7 @@
 {
     "require": {
-        "illuminate/database": "^7.0"
+        "illuminate/database": "^7.0",
+        "twilio/sdk": "^6.3"
     },
     "autoload": {
         "classmap": [

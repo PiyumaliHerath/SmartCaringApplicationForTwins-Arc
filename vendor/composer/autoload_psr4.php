@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'voku\\tests\\' => array($vendorDir . '/voku/portable-ascii/tests'),
     'voku\\' => array($vendorDir . '/voku/portable-ascii/src/voku'),
+    'Twilio\\' => array($vendorDir . '/twilio/sdk/src/Twilio'),
     'Symfony\\Polyfill\\Php73\\' => array($vendorDir . '/symfony/polyfill-php73'),
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
     'Symfony\\Contracts\\Translation\\' => array($vendorDir . '/symfony/translation-contracts'),

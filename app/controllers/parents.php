@@ -3,6 +3,7 @@
 class Parents extends Controller{
 
     protected $user;
+    protected $notification;
     Protected $student;
     protected $children;
     protected $mealplan;
@@ -12,16 +13,21 @@ class Parents extends Controller{
     protected $foods;
     protected $foodlist;
     protected $sid;
+    protected $somenotifications;
+    protected $notifications;
     protected $child;
 
     public function __construct() {
         $this->user = $this->model("Parentsprofile");
         $this->student = $this->model("Student");
         $this->mealplan = $this->model("Mealplan");
+        $this->notification = $this->model("notification");
         $this->food = $this->model("Food");
 
         $this->children = $this->student::where('parent', $_SESSION['id'])->get();
         $this->meal = $this->mealplan::orderBy('id', 'desc')->first();
+        $this->somenotifications = $this->notification::orderBy('id', 'desc')->take(3)->get();
+        $this->notifications = $this->notification::orderBy('id', 'desc')->get();
         $this->foods = $this->food::get();
 
         foreach ($this->foods as $food){
@@ -42,6 +48,11 @@ class Parents extends Controller{
         $this->view('selectstudentpage/selectstudentpage', $this->children);
     }
 
+    public function allnotifications(){
+        $this->session();
+        $this->view('allnotifications/allnotifications', $this->notifications);
+    }
+
     public function currentmealplan(){
         $this->session();
         $this->view('currentmealplanforparent/currentmealplanforparent', $this->meal, $this->foodlist);
@@ -51,7 +62,7 @@ class Parents extends Controller{
         $this->session();
         $tommorowmeal= $this->gettommorowmeal();
         print_r($tommorowmeal);
-       $this->view('dashboard/dashboard',$tommorowmeal);
+       $this->view('dashboard/dashboard',$tommorowmeal, $this->somenotifications);
     }
 
     /*Get Tommrow meal plan*/
@@ -62,13 +73,13 @@ class Parents extends Controller{
         if ($temp == "t"){
             $fletter = substr(strtolower($day),0,2); //if first letter of the day is "t" then it take first two letters
         }else if($temp=="s"){
-            $fletter = "w"; //if the day is saturday or sunday
+            $fletter = "s"; //if the day is saturday or sunday
         }else{
             $fletter = $temp;
         }
 
 
-        if($fletter != "w"){
+        if($fletter != "s"){
             //meal names
             $m1 =$fletter."breakfast";
             $m2 =$fletter."msnack";
@@ -86,6 +97,10 @@ class Parents extends Controller{
             $tommorowmeal = Array( $fletter,$this->foodlist[$m11],$allergicfood[0],$this->foodlist[$m21],$allergicfood[1], $this->foodlist[$m31], $allergicfood[2],  $this->foodlist[$m41], $allergicfood[3]);
 
             return $tommorowmeal;
+        }else{
+            $tommorowmeal = Array( $fletter);
+            return $tommorowmeal;
+
         }
 
     }

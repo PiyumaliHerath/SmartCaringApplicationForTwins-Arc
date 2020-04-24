@@ -1,4 +1,5 @@
 <?php
+use Twilio\Rest\Client;
 
 class Admin extends Controller{
 
@@ -339,10 +340,32 @@ class Admin extends Controller{
             'flsnack' => $_GET['flsnack'],
 
         ]);
+        $sms = "New meal plan created";
+        $this->sendsms($sms);
         $success = "MealPlan Added Successfully !!";
         header("location: /daycare-pure/public/admin/mealplan?error=&success=".$success);;
 
     }
 
+    public function sendsms($message){
+        // Your Account SID and Auth Token from twilio.com/console
+        $account_sid = 'ACd2bd3dc1fcc527725d19fb4879aeb40e';
+        $auth_token = 'cfbd52ba350975ee849efa7317882311';
+// In production, these should be environment variables. E.g.:
+// $auth_token = $_ENV["TWILIO_AUTH_TOKEN"]
+
+// A Twilio number you own with SMS capabilities
+        $twilio_number = "+18636243789";
+
+        $client = new Client($account_sid, $auth_token);
+        $client->messages->create(
+        // Where to send a text message (your cell phone?)
+            '+94710675040',
+            array(
+                'from' => $twilio_number,
+                'body' => $message
+            )
+        );
+    }
 
 }
