@@ -1,5 +1,7 @@
 <?php
 use Twilio\Rest\Client;
+use Twilio\Jwt\AccessToken;
+use Twilio\Jwt\Grants\VideoGrant;
 
 class Admin extends Controller{
 
@@ -7,16 +9,22 @@ class Admin extends Controller{
     Protected $food;
     Protected $student;
     Protected $mealplan;
+    Protected $currentmealplan;
     Protected $gallery;
     Protected $notification;
+    Protected $message;
+    Protected $event;
 
     public function __construct() {
         $this->user = $this->model("Parentsprofile");
         $this->food = $this->model("Food");
         $this->student = $this->model("Student");
         $this->mealplan = $this->model("Mealplan");
+        $this->currentmealplan = $this->model("CurrentMealplan");
         $this->gallery = $this->model("Gallery");
         $this->notification = $this->model("Notification");
+        $this->message = $this->model("message");
+        $this->event = $this->model("Event");
     }
 
     public function parentreg(){
@@ -53,6 +61,11 @@ class Admin extends Controller{
         $this->view('foods/foods', $foods);
     }
 
+    public function eventmanagement(){
+        $this->session();
+        $this->view('eventmanagement/eventmanagement');
+    }
+
     public function notificationpage(){
         $this->session();
         $this->view('notificationpage/notificationpage');
@@ -70,6 +83,29 @@ class Admin extends Controller{
         }
     }
 
+    public function sendmessagepage(){
+        $this->session();
+        $student = $this->student::get();
+        $this->view('sendmessage/sendmessage',$student);
+    }
+
+    public function sendmessage(){
+        $student = $this->student::where('id',$_POST['child'])->first();
+        date_default_timezone_set('Asia/Colombo');
+
+//        echo date("h-i-a");
+        $this->message->create([
+            'message' => $_POST['message'],
+            'studentid' => $_POST['child'],
+            'parentid' => $student->parent,
+            'date' => Date("d/m/Y"),
+            'time' => date("h-i-a")
+
+        ]);
+        $success = "Message Sent !!";
+        header("location: /daycare-pure/public/admin/sendmessagepage?error=&success=".$success);
+    }
+
     public function sentnotification($message, $type){
         $this->notification->create([
             'message' => $message,
@@ -84,6 +120,13 @@ class Admin extends Controller{
         $student = $this->student::get();
         $this->view('studentsearch/studentsearch',$student);
     }
+
+    public function searchparent(){
+        $this->session();
+        $users = $this->user::where('type','parent')->get();
+        $this->view('parentsearch/parentsearch',$users);
+    }
+
 
     public function submitimagetogallery(){
         $this->session();
@@ -130,6 +173,60 @@ class Admin extends Controller{
         echo $output;
     }
 
+    public function getparentslist(){
+        $this->session();
+//        echo '<p>'.$_GET["search"].'</p>';
+        $output="";
+        $parents = $this->user::where('parentname','LIKE','%'.$_GET["search"].'%')->get();
+        foreach ($parents as $parent){
+            $output.= "<div class='row my-2 container'>
+                    <div class='col-md-12'>
+                    <div class='card'>
+                    <div class='card-body'>
+                    <text>$parent->parentName </text>
+                    <a href='updateparentpage?success=&error=&id=$parent->id' class='btn btn-primary mx-5'>Edit </a>
+</div>
+</div>
+</div>
+</div>
+";
+        }
+        echo $output;
+    }
+
+    public function updateparentpage(){
+        $user = $this->user::where('id',$_GET['id'])->first();
+        $this->view('updateparentpage/updateparentpage', $user);
+    }
+
+    public function updateparent(){
+        $validstatus = true;
+        if($_GET['password'] != $_GET['repassword']){
+            $error = "Paswords not matched !!";
+            $validstatus = false;
+            header("location: /daycare-pure/public/admin/updateparentpage?error=".$error.'&success=&id='.$_GET['id']);
+        }
+
+//        $finduser = $this->user::where('email', $_GET['email'])->first();
+//        if($finduser!=null){
+//            $error = "Email Existed !! ";
+//            $validstatus = false;
+//            header("location: /daycare-pure/public/admin/updateparentpage?error=".$error.'&success=');
+//        }
+        if($validstatus ){
+            $this->user::where('id',$_GET[id])->update([
+                'parentName' => $_GET['parentName'],
+                'nic' => $_GET['nic'],
+                'address' => $_GET['address'],
+                'mobileno' => $_GET['mobileno'],
+                'email' => $_GET['email'],
+                'password' => $_GET['password'],
+            ]);
+            $success = "Updated Successfully !!!";
+            header("location: /daycare-pure/public/admin/updateparentpage?error=&success=".$success."&id=".$_GET['id']);
+        }
+    }
+
     public function studentdetails(){
         $this->session();
         $student = $this->student::where('id', $_GET['student'])->first();
@@ -139,7 +236,7 @@ class Admin extends Controller{
     public function currentmealplan(){
         $this->session();
         $foodlist = [];
-        $meal = $this->mealplan::orderBy('id', 'desc')->first();
+        $meal = $this->currentmealplan::orderBy('id', 'desc')->first();
         $foods = $this->food::get();
         $student = $this->student::get();
         $alergicchild =[];
@@ -260,7 +357,10 @@ class Admin extends Controller{
     public function newfood(){
         $this->food->create([
            'foodname' => $_GET['foodname'],
-           'foodtype' => $_GET['foodtype']
+           'foodtype' => $_GET['foodtype'],
+           'sub1' => $_GET['sub1'],
+           'sub2' => $_GET['sub2'],
+           'sub3' => $_GET['sub3'],
         ]);
         $success = "Food Added Successfully !!";
         header("location: /daycare-pure/public/admin/foods?error=&success=".$success);
@@ -340,6 +440,33 @@ class Admin extends Controller{
             'flsnack' => $_GET['flsnack'],
 
         ]);
+
+        $this->currentmealplan::truncate();
+
+        $this->currentmealplan->create([
+            'mbreakfast' => $_GET['mbreakfast'],
+            'tubreakfast' => $_GET['tubreakfast'],
+            'wbreakfast' => $_GET['wbreakfast'],
+            'thbreakfast' => $_GET['thbreakfast'],
+            'fbreakfast' => $_GET['fbreakfast'],
+            'mmsnack' => $_GET['mmsnack'],
+            'tumsnack' => $_GET['tumsnack'],
+            'wmsnack' => $_GET['wmsnack'],
+            'thmsnack' => $_GET['thmsnack'],
+            'fmsnack' => $_GET['fmsnack'],
+            'mlunch' => $_GET['mlunch'],
+            'tulunch' => $_GET['tulunch'],
+            'wlunch' => $_GET['wlunch'],
+            'thlunch' => $_GET['thlunch'],
+            'flunch' => $_GET['flunch'],
+            'mlsnack' => $_GET['mlsnack'],
+            'tulsnack' => $_GET['tulsnack'],
+            'wlsnack' => $_GET['wlsnack'],
+            'thlsnack' => $_GET['thlsnack'],
+            'flsnack' => $_GET['flsnack'],
+
+        ]);
+
         $sms = "New meal plan created";
         $this->sendsms($sms);
         $success = "MealPlan Added Successfully !!";
@@ -347,14 +474,23 @@ class Admin extends Controller{
 
     }
 
-    public function sendsms($message){
-        // Your Account SID and Auth Token from twilio.com/console
-        $account_sid = 'ACd2bd3dc1fcc527725d19fb4879aeb40e';
-        $auth_token = 'cfbd52ba350975ee849efa7317882311';
-// In production, these should be environment variables. E.g.:
-// $auth_token = $_ENV["TWILIO_AUTH_TOKEN"]
+    public function newevent(){
+        print_r($_GET['status']);
+        $this->event->create([
+            'title' => $_GET['title'],
+            'date' => $_GET['date'],
+            'status' => $_GET['status'],
+        ]);
+        $success = "Event Added Successfully !!";
+        header("location: /daycare-pure/public/admin/eventmanagement?error=&success=".$success);
 
-// A Twilio number you own with SMS capabilities
+    }
+
+    public function sendsms($message){
+
+        $account_sid = '';
+        $auth_token = '';
+
         $twilio_number = "+18636243789";
 
         $client = new Client($account_sid, $auth_token);
@@ -368,4 +504,34 @@ class Admin extends Controller{
         );
     }
 
+    public function videochat(){
+        $this->session();
+
+// Substitute your Twilio AccountSid and ApiKey details
+        $accountSid = '';
+        $apiKeySid = '';
+        $apiKeySecret = '';
+
+        $identity = 'example-user';
+
+// Create an Access Token
+        $token = new AccessToken(
+            $accountSid,
+            $apiKeySid,
+            $apiKeySecret,
+            3600,
+            $identity
+        );
+
+// Grant access to Video
+        $grant = new VideoGrant();
+        $grant->setRoom('cool room');
+        $token->addGrant($grant);
+
+// Serialize the token as a JWT
+        echo $token->toJWT();
+        $this->view("videochat/videochat");
+    }
+
 }
+

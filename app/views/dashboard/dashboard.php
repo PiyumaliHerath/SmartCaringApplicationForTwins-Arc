@@ -1,4 +1,86 @@
-x<html>
+
+<?php
+// Set your timezone
+date_default_timezone_set('Asia/Tokyo');
+
+// Get prev & next month
+if (isset($_GET['ym'])) {
+    $ym = $_GET['ym'];
+} else {
+    // This month
+    $ym = date('Y-m');
+}
+
+// Check format
+$timestamp = strtotime($ym . '-01');
+if ($timestamp === false) {
+    $ym = date('Y-m');
+    $timestamp = strtotime($ym . '-01');
+}
+
+// Today
+$today = date('Y-m-j', time());
+$x = date_create("2020-05-15");
+$eday = date_format($x,"Y-m-j");
+print_r($today);
+print_r(date_format($x,"Y-m-j"));
+
+
+// For H3 title
+$html_title = date('Y / m', $timestamp);
+
+// Create prev & next month link     mktime(hour,minute,second,month,day,year)
+$prev = date('Y-m', mktime(0, 0, 0, date('m', $timestamp)-1, 1, date('Y', $timestamp)));
+$next = date('Y-m', mktime(0, 0, 0, date('m', $timestamp)+1, 1, date('Y', $timestamp)));
+// You can also use strtotime!
+// $prev = date('Y-m', strtotime('-1 month', $timestamp));
+// $next = date('Y-m', strtotime('+1 month', $timestamp));
+
+// Number of days in the month
+$day_count = date('t', $timestamp);
+
+// 0:Sun 1:Mon 2:Tue ...
+$str = date('w', mktime(0, 0, 0, date('m', $timestamp), 1, date('Y', $timestamp)));
+//$str = date('w', $timestamp);
+
+
+// Create Calendar!!
+$weeks = array();
+$week = '';
+
+// Add empty cell
+$week .= str_repeat('<td></td>', $str);
+
+for ( $day = 1; $day <= $day_count; $day++, $str++) {
+
+    $date = $ym . '-' . $day;
+
+    if ($eday == $date) {
+        $week .= '<td class="event">' . $day;
+    }else if ($today == $date) {
+        $week .= '<td class="today">' . $day;
+    } else {
+        $week .= '<td>' . $day;
+    }
+    $week .= '</td>';
+
+    // End of the week OR End of the month
+    if ($str % 7 == 6 || $day == $day_count) {
+
+        if ($day == $day_count) {
+            // Add empty cell
+            $week .= str_repeat('<td></td>', 6 - ($str % 7));
+        }
+
+        $weeks[] = '<tr>' . $week . '</tr>';
+
+        // Prepare for new week
+        $week = '';
+    }
+
+}
+?>
+<html>
 
 <head>
     <!-- Import Bootstrap -->
@@ -14,43 +96,14 @@ x<html>
 <!--Import Navbar from partial folder-->
 <?php
 include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navbar.php');
-//
-//$day = date("l",strtotime(' +1 day'));
-//
-//
-//
-////Get the first letter of the day
-//$temp = strtolower($day[0]);
-//if ($temp == "t"){
-//    $fletter = substr(strtolower($day),0,2); //if first letter of the day is "t" then it take first two letters
-//}else if($temp=="s"){
-//    $fletter = "w"; //if the day is saturday or sunday
-//}else{
-//    $fletter = $temp;
-//}
-//
-//
-//if($fletter != "w"){
-//    //meal names
-//    $m1 =$fletter."breakfast";
-//    $m2 =$fletter."msnack";
-//    $m3 =$fletter."lunch";
-//    $m4 =$fletter."lsnack";
-//
-////to get real name from foodlist
-//    $m11 = $data[$m1];
-//    $m21 = $data[$m2];
-//    $m31 = $data[$m3];
-//    $m41 = $data[$m4];
-//}
-
 ?>
 
 <!-- Login page body -->
 <div class="bg-reg">
-    <div class="row mt-5">
-        <div class="col-md-3">
-            <div class="card box">
+<div class="row mx-5 mt-5">
+    <div class="col-md-4 ">
+        <div class="row ">
+            <div class="card box w-75">
                 <div class="card-header">
                     <h3 class="title text-center"> <i class="fas fa-utensils"></i> Meal Plan</h3>
                 </div>
@@ -60,24 +113,29 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
                     if($data[0] != "s"){
                         if($data[2] == 1){
                             echo "<text class='foodlist'> Breakfast <span class='foodallergy'> $data[1]</span> </text> <br>";
+                            echo '<p class="text-success sub">'. implode(', ', $data[9]) .'</p>';
                         }else{
                             echo "<text class='foodlist'> Breakfast <span class='food'> $data[1]</span> </text><br>";
                         }
 
                     if($data[4] == 1){
                         echo "<text class='foodlist'> Morning Snack <span class='foodallergy'>  $data[3] </span> </text><br>";
+                        echo '<p class="text-success sub">'. implode(', ', $data[10]) .'</p>';
+
                     }else{
                         echo "<text class='foodlist'> Morning Snack <span class='food'>  $data[3] </span> </text><br>";
                     }
 
                         if($data[6] == 1){
                             echo "<text class='foodlist'> Lunch <span class='foodallergy'>  $data[5] </span> </text><br>";
+                            echo '<p class="text-success sub">'. implode(', ', $data[11]) .'</p>';
                         }else{
                             echo "<text class='foodlist'> Lunch <span class='food'>  $data[5] </span> </text><br>";
                         }
 
                         if($data[8] == 1){
                             echo "<p class='foodlist'> Snack After Lunch <span class='foodallergy'>  $data[7] </span> </p>";
+                            echo '<p class="text-success sub">'. implode(', ', $data[12]) .'</p>';
                         }else{
                             echo "<p class='foodlist'> Snack After Lunch <span class='food'>  $data[7] </span> </p>";
                         }
@@ -96,12 +154,37 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
                 </div>
             </div>
         </div>
+        <div class="row ">
+            <div class="card box w-75">
+                <div class="card-header">
+                    <h3 class="title text-center"> <i class="fas fa-envelope-open-text"></i> Messages</h3>
+                </div>
+                <div class="card-body">
+                    <?php
+                         $count = 0;
+                            foreach($sdata as $message){
+                                echo "<div class='alert alert-primary'> <text>".$message->message."</text><br> <text class='textdate'>".$message->date."</text> <text class='texttime'> ".$message->time."</text></div>";
+                                $count++;
+                            }
+                            if($count ==0){
+                                echo "<p> No messages</p>";
+                            }
 
-        <div class="col-md-6">
-
+                    ?>
+                </div>
+                <div class="card-header">
+                    <a href="allmessages?id=<?php echo $_GET['id']?>">See full Messages</a>
+                </div>
+            </div>
         </div>
-        <div class="col-md-3">
-            <div class="card box">
+    </div>
+
+  <div class="col-md-4">
+
+  </div>
+        <div class="col-md-4 ">
+            <div class="row">
+            <div class="card box w-75">
                 <div class="card-header">
                     <h3 class="title text-center"> <i class="fas fa-bell"></i> Notifications</h3>
                 </div>
@@ -118,10 +201,50 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
 
             </div>
         </div>
+            <div class="row">
+                <div class="card box w-75">
+                <div class="card-header">
+                    <h3 class="title text-center"> <i class="fas fa-bell"></i> Calender</h3>
+                </div>
+                    <div class="card-body">
+
+<!--                            <h3><a href="?ym=--><?php //echo $prev; ?><!--">&lt;</a> --><?php //echo $html_title; ?><!-- <a href="?ym=--><?php //echo $next; ?><!--">&gt;</a></h3>-->
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>S</th>
+                                    <th>M</th>
+                                    <th>T</th>
+                                    <th>W</th>
+                                    <th>T</th>
+                                    <th>F</th>
+                                    <th>S</th>
+                                </tr>
+                                <?php
+                                foreach ($weeks as $week) {
+                                    echo $week;
+                                }
+                                ?>
+                            </table>
+
+                     </div>
+                    <div class="card-header">
+                        <a href="allevents">See All Events</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 </div>
 
+</div>
+
+
+<footer class="fixed-bottom">
+    <a href="emergencycall" class="btn btn-success my-2 mx-5"><i class="fas fa-phone-volume mx-3"></i>Call</a>
+</footer>
+</body>
 
 
 

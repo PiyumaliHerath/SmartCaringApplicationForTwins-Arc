@@ -57,6 +57,39 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
                     </div>
 
                 </div>
+                <p>Substitute foods</p>
+                <div class="row">
+                    <div class="col-md-4">
+                        <select class="form-control" name="sub1">
+                            <?php
+                            foreach($data as $food){
+                                    echo "<option value=$food->foodname>$food->foodname </option>";
+                            }
+                            ?>
+                        </select>
+                        </th>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-control" name="sub2">
+                            <?php
+                            foreach($data as $food){
+                                echo "<option value=$food->foodname>$food->foodname </option>";
+                            }
+                            ?>
+                        </select>
+                        </th>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-control" name="sub3">
+                            <?php
+                            foreach($data as $food){
+                                echo "<option value=$food->foodname>$food->foodname </option>";
+                            }
+                            ?>
+                        </select>
+                        </th>
+                    </div>
+                </div>
 
                 <div class="row">
                     <button type="submit" class="btn btn-primary btn-lg mt-3 mx-3">Submit</button>
@@ -71,7 +104,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
             <p class="pt-3">Foods for Meals</p>
 
             <form>
-                <table class="table table-border table-sm">
+                <table class="table table-border table-sm text-color">
                     <thead>
                     <th scope="col">Food Name</th>
                     <th scope="col">Food Type</th>

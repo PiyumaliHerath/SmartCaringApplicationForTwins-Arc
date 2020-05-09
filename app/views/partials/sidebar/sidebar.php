@@ -2,9 +2,7 @@
     <ul class="sidebar-nav">
 
         <li class="sidebar-brand mx-auto mt-3">
-            <a href="#">
-                <i class="fas fa-user-tie mx-2 "></i>   Nimal Perera
-            </a>
+
         </li>
         <hr>
         <li>
@@ -26,13 +24,23 @@
             <a href="parentreg?error=&success=">Parent Registration</a>
         </li>
         <li>
+            <a href="searchparent" >Parent Profile</a>
+        </li>
+        <li>
             <a href="teacherreg?error=&success="">Teacher Registration</a>
         </li>
+
         <li>
             <a href="uploadimage ?error=&success=">Upload Images</a>
         </li>
         <li>
             <a href="notificationpage?error=&success=">Notification</a>
+        </li>
+        <li>
+            <a href="sendmessagepage?error=&success=">Send Message</a>
+        </li>
+        <li>
+            <a href="eventmanagement?error=&success=">Event Management</a>
         </li>
 
 

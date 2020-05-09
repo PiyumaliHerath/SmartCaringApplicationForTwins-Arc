@@ -7,7 +7,7 @@ class Controller{
         return new $model();
     }
 
-    public function view($view, $data = [], $mdata = [], $sdata = []){
+    public function view($view, $data = [], $mdata = [], $sdata = [], $weeks = []){
         require_once '../app/views/'.$view . '.php';
     }
     

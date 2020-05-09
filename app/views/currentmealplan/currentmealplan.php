@@ -6,7 +6,7 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!-- Import custom css -->
-    <link rel="stylesheet" href="../../../daycare-pure/public/css/teacherreg.css">
+    <link rel="stylesheet" href="../../../daycare-pure/public/css/mealplan.css">
 </head>
 
 <body>
@@ -39,7 +39,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
                 <p class="pt-5">Current Meal Plan</p>
                 <hr>
 
-            <table class="table table-bordered table-sm">
+            <table class="table table-bordered table-sm text-color">
                 <thead>
                 <tr class="table-primary">
                     <th scope="col" class="text-center">Monday</th>
@@ -53,7 +53,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
                 <tr class="table-info">
                     <th colspan="5" class="text-center">Breakfast</th>
                 </tr>
-                <tr>
+                <tr class="table-success">
                     <td class="text-center"><?php echo $mdata[$data->mbreakfast]; ?></td>
                     <td class="text-center"><?php echo $mdata[$data->tubreakfast]; ?></td>
                     <td class="text-center"><?php echo $mdata[$data->wbreakfast]; ?></td>
@@ -64,7 +64,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
                 <tr class="table-info">
                     <th colspan="5" class="text-center">Morning Snack</th>
                 </tr>
-                <tr>
+                <tr class="table-success">
                     <td class="text-center"><?php echo $mdata[$data->mmsnack]; ?></td>
                     <td class="text-center"><?php echo $mdata[$data->tumsnack]; ?></td>
                     <td class="text-center"><?php echo $mdata[$data->wmsnack]; ?></td>
@@ -75,7 +75,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
                 <tr class="table-info">
                     <th colspan="5" class="text-center">Lunch</th>
                 </tr>
-                <tr>
+                <tr class="table-success">
                     <td class="text-center"><?php echo $mdata[$data->mlunch]; ?></td>
                     <td class="text-center"><?php echo $mdata[$data->tulunch]; ?></td>
                     <td class="text-center"><?php echo $mdata[$data->wlunch]; ?></td>
@@ -86,7 +86,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
                 <tr class="table-info">
                     <th colspan="5" class="text-center">Snack After Lunch</th>
                 </tr>
-                <tr>
+                <tr class="table-success">
                     <td class="text-center"><?php echo $mdata[$data->mlsnack]; ?></td>
                     <td class="text-center"><?php echo $mdata[$data->tulsnack]; ?></td>
                     <td class="text-center"><?php echo $mdata[$data->wlsnack]; ?></td>
