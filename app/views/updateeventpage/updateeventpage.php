@@ -26,14 +26,9 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
-        <?php  if($_GET['error'] != null){
-            echo "<div class='alert alert-danger mt-5'>" .$_GET['error']. "</div>";
-        }; ?>
-        <?php  if($_GET['success'] != null){
-            echo "<div class='alert alert-primary mt-5'>" .$_GET['success']. "</div>";
-        }; ?>
+
         <div class="container mt-1 ">
-            <form action="/daycare-pure/public/admin/newevent">
+            <form action="/daycare-pure/public/admin/eventupdate">
                 <p class="pt-5">Events Management</p>
                 <hr>
 
@@ -42,7 +37,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="title">Title </label>
-                            <input type="text" class="form-control" id="title" name="title" placeholder="Enter Event Title ">
+                            <input type="text" class="form-control" id="title" name="title"  value="<?php echo $data->title?>">
                         </div>
                     </div>
                 </div>
@@ -51,7 +46,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="date">Date </label>
-                            <input type="date" class="form-control" id="date" name="date">
+                            <input type="date" class="form-control" id="date" name="date" value="<?php echo $data->date?>">
                         </div>
                     </div>
                 </div>
@@ -59,12 +54,14 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
                 <div class="row">
                     <div class="col-md-6">
                         <label for="status">Type</label>
-                        <select class="form-control" name="status" id="status">
+                        <select class="form-control" name="status" id="status" >
                             <option value="1">Event</option>
                             <option value="0">Holiday</option>
                         </select>
                     </div>
                 </div>
+
+                <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $data->id?>">
 
 
                 <div class="row">
@@ -75,34 +72,9 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
 
             </form>
 
-            <div class="container mt-1 ">
-                <p class="pt-3">Foods for Meals</p>
-
-                <form>
-                    <table class="table table-border table-sm text-color">
-                        <thead>
-                        <th scope="col">Event Name</th>
-                        <th scope="col">Event Type</th>
-                        <th colspan="2" scope="col">action</th>
-                        </thead>
-                        <tbody>
-                        <?php
-                        foreach($data as $event){
-                           echo "<tr><td '>$event->title</td> <td scope='col'>$event->date</td><td ><a href='eventedit?id=$event->id' class='btn btn-primary mx-3'> Edit</a><a href='eventremove?id=$event->id' class='btn btn-primary'> Delete</a></td> </tr>";
-                        }
-                        ?>
-
-                        </tbody>
-                    </table>
-                </form>
-            </div>
-
-
-
-
+        </div>
     </div>
-</div>
-<!-- /#page-content-wrapper -->
+    <!-- /#page-content-wrapper -->
 
 </div>
 <!-- /#wrapper -->

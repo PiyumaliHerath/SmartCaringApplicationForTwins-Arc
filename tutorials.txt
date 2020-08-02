@@ -8,3 +8,6 @@ https://www.allphptricks.com/simple-user-registration-login-script-in-php-and-my
 For the search part
 https://www.cloudways.com/blog/live-search-laravel-ajax/
 https://www.youtube.com/watch?v=wCsPAquMNVw
+
+For calender
+https://codingwithsara.com/how-to-code-calendar-in-php/

@@ -63,7 +63,8 @@ class Admin extends Controller{
 
     public function eventmanagement(){
         $this->session();
-        $this->view('eventmanagement/eventmanagement');
+        $events = $this->event::get();
+        $this->view('eventmanagement/eventmanagement', $events);
     }
 
     public function notificationpage(){
@@ -372,6 +373,27 @@ class Admin extends Controller{
         header("location: /daycare-pure/public/admin/foods?error=&success=".$success);
     }
 
+    public function eventremove(){
+        $this->event::where('id', $_GET['id'])->delete();
+        $success = "Event Deleted Successfully !!";
+        header("location: /daycare-pure/public/admin/eventmanagement?error=&success=".$success);
+    }
+
+    public function eventedit(){
+        $event = $this->event::where('id',$_GET['id'])->first();
+        $this->view('updateeventpage/updateeventpage', $event);
+    }
+    public function eventupdate(){
+
+        $this->event::where('id',$_GET[id])->update([
+            'title' => $_GET['title'],
+            'date' => $_GET['date'],
+            'status' => $_GET['status'],
+        ]);
+        $success = "Event Updated Successfully !!";
+        header("location: /daycare-pure/public/admin/eventmanagement?error=&success=".$success);
+    }
+
     public function newstudent(){
 
         $selectedfoodarray = [];
@@ -488,8 +510,8 @@ class Admin extends Controller{
 
     public function sendsms($message){
 
-        $account_sid = '';
-        $auth_token = '';
+        $account_sid = 'ACd2bd3dc1fcc527725d19fb4879aeb40e';
+        $auth_token = '16140dad350c285a7afec0c237f17ac3';
 
         $twilio_number = "+18636243789";
 
@@ -508,9 +530,9 @@ class Admin extends Controller{
         $this->session();
 
 // Substitute your Twilio AccountSid and ApiKey details
-        $accountSid = '';
-        $apiKeySid = '';
-        $apiKeySecret = '';
+        $accountSid = 'ACd2bd3dc1fcc527725d19fb4879aeb40e';
+        $apiKeySid = 'SKc55bf58dac121bf63551a603de77f7c5';
+        $apiKeySecret = 'lwxn7LeXO4pWUUbacJBYnVne0BFUWnLG';
 
         $identity = 'example-user';
 
