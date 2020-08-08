@@ -1,4 +1,4 @@
-x<html>
+<html>
 
 <head>
     <!-- Import Bootstrap -->

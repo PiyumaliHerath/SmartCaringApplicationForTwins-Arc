@@ -72,6 +72,11 @@ class Admin extends Controller{
         $this->view('notificationpage/notificationpage');
     }
 
+    public function reportgenerate(){
+        $this->session();
+        $this->view('reportgenerate/reportgenerate');
+    }
+
     public function notification(){
         $message =  $_GET['message'];
         $type =  $_GET['type'];
@@ -541,6 +546,113 @@ class Admin extends Controller{
         } else {
             echo "Email sending failed...";
         }
+    }
+
+    public function createpdf($content){
+        $this->session();
+        require($_SERVER['DOCUMENT_ROOT']."/daycare-pure/public/tcpdf_min/tcpdf.php");
+        $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
+      $obj_pdf->SetCreator(PDF_CREATOR);  
+      $obj_pdf->SetTitle("Export HTML Table data to PDF using TCPDF in PHP");  
+      $obj_pdf->SetHeaderData('', '', PDF_HEADER_TITLE, PDF_HEADER_STRING);  
+      $obj_pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));  
+      $obj_pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));  
+      $obj_pdf->SetDefaultMonospacedFont('helvetica');  
+      $obj_pdf->SetFooterMargin(PDF_MARGIN_FOOTER);  
+      $obj_pdf->SetMargins(PDF_MARGIN_LEFT, '5', PDF_MARGIN_RIGHT);  
+      $obj_pdf->setPrintHeader(false);  
+      $obj_pdf->setPrintFooter(false);  
+      $obj_pdf->SetAutoPageBreak(TRUE, 10);  
+      $obj_pdf->SetFont('helvetica', '', 12);
+      $obj_pdf->setPageOrientation('L');  
+      $obj_pdf->AddPage();  
+      $content = $content; 
+       
+      $obj_pdf->writeHTML($content);  
+      $obj_pdf->Output('sample.pdf', 'I'); 
+
+    }
+
+    public function childrenreport(){
+        $this->session();
+        $students = $this->student::get();
+        $out = '';
+        foreach ($students as $student){
+            $out.= "<tr>  
+                          <td>$student->id</td>  
+                          <td>$student->firstname</td>  
+                          <td>$student->lastname</td>  
+                          <td>$student->gender</td>  
+                          <td>$student->birthday</td>
+                          <td>$student->hoursofchildcare</td>
+                          <td>$student->daysofweek</td>
+                          <td>$student->ename</td>
+                          <td>$student->ephoneno</td> 
+                          <td>$student->height</td> 
+                          <td>$student->weight</td>
+                     </tr>  
+                          "; 
+                        
+            
+        }
+
+        $studentreport = '
+            <h1 class="text-center">Student report</h1>
+            <table border="1" cellspacing="0" cellpadding="5">  
+           <tr>  
+                <th>ID</th>  
+                <th>First Name</th>  
+                <th>Last Name</th>  
+                <th>Gender</th>  
+                <th>Birthday</th>
+                <th>Hours</th>
+                <th>Days</th>
+                <th>E Name</th>
+                <th>E no</th>
+                <th>Height</th>
+                <th>Weight</th>  
+           </tr> 
+            '.$out.'
+           
+            ';
+        $this->createpdf($studentreport);
+    }
+
+    public function parentreport(){
+        $this->session();
+        $parents = $this->user::get();
+        $out = '';
+        foreach ($parents as $parent){
+            $out.= "<tr>  
+                          <td>$parent->id</td>  
+                          <td>$parent->parentName</td>  
+                          <td>$parent->nic</td>  
+                          <td>$parent->address</td>  
+                          <td>$parent->mobileno</td>
+                          <td>$parent->email</td>
+                          
+                     </tr>  
+                          "; 
+                        
+            
+        }
+
+        $studentreport = '
+            <h1 class="text-center">Student report</h1>
+            <table border="1" cellspacing="0" cellpadding="5">  
+           <tr>  
+                <th >ID</th>  
+                <th>Parent Name</th>  
+                <th>Nic</th>  
+                <th>Address</th>  
+                <th>Mobile No</th>
+                <th>Email</th>
+                  
+           </tr> 
+            '.$out.'
+           
+            ';
+        $this->createpdf($studentreport);
     }
 
     public function videochat(){
