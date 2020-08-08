@@ -20,12 +20,16 @@
                             if(empty($_SESSION['login_email'])){
                                 echo ' <li class="nav-item "><a href="/daycare-pure/public/home/login?error="
                                 class="nav-link text-uppercase font-weight-bold txt-blue">LogIn</a></li>
-                        <li class="nav-item "><a href="/signup"
-                                class="nav-link text-uppercase font-weight-bold txt-blue">SignUp</a></li>';
+                        ';
                             }else{
                                 echo ' <li class="nav-item "><a href="/daycare-pure/public/home/gallery" class="nav-link text-uppercase font-weight-bold txt-blue">Gallery </a></li>
-                                      <li class="nav-item "><a href="/daycare-pure/public/login/logout" class="nav-link text-uppercase font-weight-bold txt-blue">logout</a></li>
-                                      <li class="nav-item "><a href="/daycare-pure/public/admin/studentreg" class="nav-link text-uppercase font-weight-bold txt-blue"><i class="fas fa-user-tie mx-2 "></i>'.$_SESSION['user_name'].'</a></li>';
+                                      <li class="nav-item "><a href="/daycare-pure/public/login/logout" class="nav-link text-uppercase font-weight-bold txt-blue">logout</a></li>';
+                                      if($_SESSION['type'] == 'admin'){
+                                        echo  '<li class="nav-item "><a href="/daycare-pure/public/admin/searchstudent" class="nav-link text-uppercase font-weight-bold txt-blue"><i class="fas fa-user-tie mx-2 "></i>'.$_SESSION['user_name'].'</a></li>';
+                                      } else if($_SESSION['type'] == 'parent'){
+                                        echo  '<li class="nav-item "><a href="/daycare-pure/public/parents/selectchildpage" class="nav-link text-uppercase font-weight-bold txt-blue"><i class="fas fa-user-tie mx-2 "></i>'.$_SESSION['user_name'].'</a></li>';
+                                      }
+                                    
 
                             }
                         ?>

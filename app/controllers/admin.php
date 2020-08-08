@@ -286,6 +286,9 @@ class Admin extends Controller{
         if(empty($_SESSION['login_email'])){
             header("location: /daycare-pure/public/home/login?error=");
             exit();
+        }else if($_SESSION['type'] != 'teacher'){
+            header("location: /daycare-pure/public/home/homepage");
+            exit();
         }
     }
 

@@ -206,6 +206,9 @@ class Parents extends Controller{
         if(empty($_SESSION['login_email'])){
             header("location: /daycare-pure/public/home/login?error=");
             exit();
+        }else if($_SESSION['type'] != 'parent'){
+            header("location: /daycare-pure/public/home/homepage");
+            exit();
         }
     }
 
