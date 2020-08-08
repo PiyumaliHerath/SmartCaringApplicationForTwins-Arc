@@ -29,6 +29,9 @@ class Login extends Controller
                     }
 
 
+                }else{
+                    $error = "Your email or password is incorrect";
+                    header("location: /daycare-pure/public/home/login?error=".$error);
                 }
             }else{
                 $error = "Your email or password is incorrect";
