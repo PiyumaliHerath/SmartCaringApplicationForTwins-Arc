@@ -45,19 +45,19 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
                     <div class="col-md-4">
                         <div class="form-group">
 <!--                            <label for="firstname">First Name </label>-->
-                            <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Enter First Name">
+                            <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Enter First Name" required>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
 <!--                            <label for="lastname"> Lastname</label>-->
-                            <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Enter Last Name">
+                            <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Enter Last Name" required>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
 <!--                            <label for="gender"> Gender</label>-->
-                            <select class="form-control" name="gender" id="gender">
+                            <select class="form-control" name="gender" id="gender" required>
                                 <option value="" disabled selected >Gender</option>
                                 <option>Male</option>
                                 <option>Female</option>
@@ -71,7 +71,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
                     <div class="col-md-12">
                         <div class="form-group">
 <!--                            <label for="address">Address</label>-->
-                            <input type="text" class="form-control" name="address" id="address" placeholder="Enter address">
+                            <input type="text" class="form-control" name="address" id="address" placeholder="Enter address" required>
                         </div>
                     </div>
                 </div>
@@ -81,19 +81,19 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
                     <div class="col-md-4">
                         <div class="form-group">
 <!--                            <label for="birthday">Birthday</label>-->
-                            <input type="date" class="form-control datepicker" id="birthday" name="birthday" placeholder="Enter Birthday">
+                            <input type="date" class="form-control datepicker" id="birthday" name="birthday" placeholder="Enter Birthday" required>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
 <!--                            <label for="hofcare">Hours of Childcare </label>-->
-                            <input type="text" class="form-control" id="hoursofchildcare" name="hoursofchildcare"placeholder="Enter Hours of Chilldcare">
+                            <input type="text" class="form-control" id="hoursofchildcare" name="hoursofchildcare"placeholder="Enter Hours of Chilldcare" required>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
 <!--                            <label for="daysofweek">Days of Week </label>-->
-                            <input type="text" class="form-control" id="daysofweek" name="daysofweek" placeholder="Enter Days of Weeks">
+                            <input type="text" class="form-control" id="daysofweek" name="daysofweek" placeholder="Enter Days of Weeks" required>
                         </div>
                     </div>
                 </div>
@@ -118,7 +118,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
                     <div class="row mt-3 mx-2">
                         <div class="col-md-12">
                             <label for="photo">Photo</label>
-                            <input type="file" id="photo" name="photo" class="form-control-file">
+                            <input type="file" id="photo" name="photo" class="form-control-file" required>
                         </div>
                     </div>
 
@@ -131,13 +131,13 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
                     <div class="col-md-6">
                         <div class="form-group">
 <!--                            <label for="ename">Name</label>-->
-                            <input type="text" class="form-control" id="ename" name="ename" placeholder="Enter Name">
+                            <input type="text" class="form-control" id="ename" name="ename" placeholder="Enter Name" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
 <!--                            <label for="ephoneno">Phone no</label>-->
-                            <input type="text" class="form-control" id="ephoneno" name="ephoneno"placeholder="Enter Phone no">
+                            <input type="text" class="form-control" id="ephoneno" name="ephoneno"placeholder="Enter Phone no" required>
                         </div>
                     </div>
 
@@ -150,13 +150,13 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
                     <div class="col-md-6">
                         <div class="form-group">
 <!--                            <label for="height">Height </label>-->
-                            <input type="text" class="form-control" id="height" name="height" placeholder="Enter Height">
+                            <input type="text" class="form-control" id="height" name="height" placeholder="Enter Height" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
 <!--                            <label for="weight"> Weight</label>-->
-                            <input type="text" class="form-control" id="weight" name="weight" placeholder="Enter Weight">
+                            <input type="text" class="form-control" id="weight" name="weight" placeholder="Enter Weight" required>
                         </div>
                     </div>
                 </div>
