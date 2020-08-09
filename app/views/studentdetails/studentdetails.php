@@ -32,22 +32,59 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
         <div class="container mt-5 ">
 
         <div class="row">
-            <div class="col-md-5 col-sm-12">
+            <div class="col-md-5 mt-5 col-sm-12">
                 <img src='../../../daycare-pure/public/uploadimages/babies/<?php echo $data->photo?>' class='img-fluid fit-image'>
             </div>
             <div class="col-md-7 col-sm-12">
-                <div class="row">
+            
+                <div class="row text-center">
                     <div class="col-md-12 col-sm-12">
-                        <h1 class="text-bold"> <?php echo $data->firstname. " ". $data->lastname ?></h1>
+                        <h1 class="text-bold text-white"> <?php echo $data->firstname. " ". $data->lastname ?></h1>
                     </div>
                 </div>
-                <div class="row mt-3">
-                    <h6> <i class="fas fa-birthday-cake mr-3"></i> <?php echo $data->birthday ?></h6>
+                <div class="alert alert-primary"  >
+                <div class="row mt-3 ml-3">
+                    <h5 class="text-primary"> <i class="fas fa-birthday-cake mr-3 "></i> <?php echo $data->birthday ?></h5>
                 </div>
-                <div class="row mt-2">
-                    <h6> <i class="fas fa-male mr-3"></i> <?php echo $data->gender ?></h6>
+                <div class="row mt-2 ml-3">
+                    <h5 class="text-primary"> <i class="fas fa-male mr-3"></i> <?php echo $data->gender ?></h5>
                 </div>
-
+                <div class="row mt-2 ml-3">
+                    <h5 class="text-primary"> <i class="fas fa-map-marker-alt mr-3"></i> <?php echo $data->address ?></h5>
+                </div>
+                <div class="row mt-2 ml-3">
+                    <h5 class="text-primary"> Hours of Child Care -  <?php echo $data->hoursofchildcare ?> hours</h5>
+                </div>
+                <div class="row mt-2 ml-3">
+                    <h5 class="text-primary"> Days of Week -  <?php echo $data->daysofweek ?> Week</h5>
+                </div>
+                <div class="row mt-2 ml-3">
+                    <h5 class="text-primary"> Weight -  <?php echo $data->weight ?> </h5>
+                </div>
+                <div class="row mt-2 ml-3">
+                    <h5 class="text-primary"> Height -  <?php echo $data->height ?> </h5>
+                </div>
+                <div class="row mt-2 ml-3">
+                    <h5 class="text-primary"> Medical Allergise -  <?php echo $data->medicationallergies ?> </h5>
+                </div>
+                <div class="row mt-2 ml-3">
+                    <h5 class="text-primary"> Cronical Health Consern -  <?php echo $data->cronichealthconsern ?> </h5>
+                </div>
+                <div class="row mt-2 ml-3">
+                    <h5 class="text-primary"> Narrations -  <?php echo $data->narrations ?> </h5>
+                </div>
+                <div class="row mt-2 ml-3">
+                    <h5 class="text-primary"> Special notes -  <?php echo $data->specialnotes ?> </h5>
+                </div>
+            </div>
+            <div class="alert alert-danger">
+                <div class="row mt-3 ml-3">
+                    <h5 class="text-danger"> Emergency Contact Name-  <?php echo $data->ename ?> </h5>
+                </div>
+                <div class="row mt-2 ml-3">
+                    <h5 class="text-danger"> Emergency Contact Number-  <?php echo $data->ephoneno ?> </h5>
+                </div>
+            </div>
             </div>
 
         </div>
