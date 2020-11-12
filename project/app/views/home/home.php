@@ -25,7 +25,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
             <div class="row">
                 <div class="col-md-6 mt-5">
                 
-                    <h1>Twins' Ark Montessory & Daycare</h1>
+                    <h1>Twin's Ark Montisoori & Daycare</h1>
                     <h3 class="">" Happy childhood memories start here  "</h3>
                     <br>
                 </div>

@@ -28,7 +28,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/daycare-pure/app/views/partials/navbar/navba
     <div id="page-content-wrapper">
         
         <div class="container mt-1 ">
-        <p class="pt-5">Report Generator</p>
+        <p class="pt-5">Report Generate</p>
             <hr>
             <div class="row mt-5">
                 <a class="btn btn-outline-light btn-lg btn-block" href="childrenreport" role="button">Children report</a>

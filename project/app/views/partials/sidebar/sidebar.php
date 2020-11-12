@@ -43,7 +43,7 @@
             <a href="eventmanagement?error=&success=">Event Management</a>
         </li>
         <li>
-            <a href="reportgenerate?error=&success=">Report Generator</a>
+            <a href="reportgenerate?error=&success=">Report Generate</a>
         </li>
 
 

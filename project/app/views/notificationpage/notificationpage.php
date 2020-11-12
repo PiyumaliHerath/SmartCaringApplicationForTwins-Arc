@@ -59,12 +59,12 @@ $students = [];
                             </select>
                     </div>
                 </div>
-                <div class="row  ">
+
+                </div>
+
+                <div class="row mx-5">
                     <button type="submit" class="btn btn-primary btn-lg mt-3 mx-3">Submit</button>
                 </div>
-                </div>
-
-
 
             </form>
 

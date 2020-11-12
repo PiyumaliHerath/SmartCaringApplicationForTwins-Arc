@@ -518,15 +518,15 @@ class Admin extends Controller{
 
     public function sendsms($message){
 
-        $account_sid = 'AC04b524214d7654e17490de281221cb2e';
-        $auth_token = '23faa5f73a90a2fd03d80e5fb7b09114';
+        $account_sid = 'ACd2bd3dc1fcc527725d19fb4879aeb40e';
+        $auth_token = '16140dad350c285a7afec0c237f17ac3';
 
-        $twilio_number = "+12058929484";
+        $twilio_number = "+18636243789";
 
         $client = new Client($account_sid, $auth_token);
         $client->messages->create(
         // Where to send a text message (your cell phone?)
-            '+94760967744',
+            '+94710675040',
             array(
                 'from' => $twilio_number,
                 'body' => $message
@@ -536,7 +536,7 @@ class Admin extends Controller{
 
     public function sendemail(){
         $this->session();
-        $to_email = "piyumi.dinu@gmail.com";
+        $to_email = "bhathiyamihiran@gmail.com";
         $subject = "Simple Email Test via PHP";
         $body = "Hi,nn This is test email send by PHP Script";
         $headers = "From: sender\'s email";
